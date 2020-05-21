@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-
-
     <h3>Filters</h3>
     <div class="filter-container">
       <h3>Species</h3>
@@ -13,7 +11,7 @@
         <input type="radio" id="mytholog" name="species" class="custom-control-input" />
         <label class="custom-control-label" for="mytholog">Mytholog</label>
       </div>
-        <div class="custom-control custom-radio">
+      <div class="custom-control custom-radio">
         <input type="radio" id="alien" name="species" class="custom-control-input" />
         <label class="custom-control-label" for="alien">Alien</label>
       </div>
@@ -30,8 +28,6 @@
         <label class="custom-control-label" for="female">Female</label>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -40,18 +36,18 @@ export default {};
 </script>
 
 <style scoped>
-.container{
+.container {
   margin: 20px 0px 0px 0px;
 }
 
 .filter-container {
   border: solid black 1px;
   padding: 20px;
-  margin:20px 0px ;
+  margin: 20px 0px;
   background: white;
 }
 
-.custom-radio :hover{
+.custom-radio :hover {
   cursor: pointer;
 }
 </style>

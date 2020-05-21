@@ -23,6 +23,7 @@ export default {};
   color:white ;
   padding: 5px 15px;
   border-radius: 5px;
+  margin-right: 10px;
 }
 
 .cross {
