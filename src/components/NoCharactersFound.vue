@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    No Characters Found.
   </div>
 </template>
 

@@ -15,8 +15,6 @@ export default {};
 .container{
   margin: 20px 0px 20px 0px;
 }
-
-
 .selected-filter {
   display: inline-block;
   background: black;

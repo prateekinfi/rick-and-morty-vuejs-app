@@ -33,6 +33,12 @@ export default {
     appSearch: Search,
     appSorting: Sorting
   }
+  // ,
+  // data(){
+  //   return{
+  //     characterlist:
+  //   }
+  // }
 };
 </script>
 
