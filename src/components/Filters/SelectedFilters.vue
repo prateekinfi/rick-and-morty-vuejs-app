@@ -1,24 +1,39 @@
 <template>
   <div class="container">
     <h3>Selected Filters</h3>
-        <div class="selected-filter">
-          Male
-          <div class="cross">X</div>
-        </div>
+    <div class="selected-filter" v-for="(filter,index) in filterList" :key="filter.name">
+      {{filter.name}}
+      <div class="cross" @click="removeFilter(filter.filterType,index)">X</div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      filterList: [
+        { name: "Male", filterType: "gender" },
+        { name: "Human", filterType: "species" }
+      ]
+    };
+  },
+  methods: {
+    removeFilter(filter, index) {
+      this.filterList.splice(index, 1);
+      this.$store.dispatch("removeFilter", filter);
+    }
+  }
+};
 </script>
 <style scoped>
-.container{
+.container {
   margin: 20px 0px 20px 0px;
 }
 .selected-filter {
   display: inline-block;
   background: black;
-  color:white ;
+  color: white;
   padding: 5px 15px;
   border-radius: 5px;
   margin-right: 10px;

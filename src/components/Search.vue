@@ -27,12 +27,6 @@ export default {
   methods: { 
     ...mapActions(["searchCharacter","clearSearch"])
    }
-
-  // {
-  // searchCharacter(value){
-  //   this.$store.dispatch('searchCharacter',value);
-  // }
-  // }
 };
 </script>
 

@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="container-fluid">
     <div class="row">
-      <div class="col-md-3">  
-      <app-filters></app-filters>
+      <div class="col-md-3">
+        <app-filters></app-filters>
       </div>
       <div class="col-md-9">
         <app-display-section></app-display-section>
@@ -13,7 +13,7 @@
 
 <script>
 import DisplaySection from "./components/DisplaySection";
-import Filters from './components/Filters/Filters';
+import Filters from "./components/Filters/Filters";
 
 export default {
   components: {
@@ -24,14 +24,14 @@ export default {
 </script>
 
 <style>
-html,body{
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
 }
-body{
-  background: url('./assets/background.png');
+body {
+  background: url("./assets/background.png");
 }
-
 </style>

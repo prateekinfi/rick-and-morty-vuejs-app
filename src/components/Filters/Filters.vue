@@ -4,27 +4,62 @@
     <div class="filter-container">
       <h3>Species</h3>
       <div class="custom-control custom-radio">
-        <input type="radio" id="human" name="species" class="custom-control-input" />
+        <input
+          type="radio"
+          id="human"
+          v-model="species"
+          value="Human"
+          class="custom-control-input"
+          v-on:change="addFilter"
+        />
         <label class="custom-control-label" for="human">Human</label>
       </div>
       <div class="custom-control custom-radio">
-        <input type="radio" id="mytholog" name="species" class="custom-control-input" />
+        <input
+          type="radio"
+          id="mytholog"
+          v-model="species"
+          value="Mytholog"
+          class="custom-control-input"
+          v-on:change="addFilter"
+        />
         <label class="custom-control-label" for="mytholog">Mytholog</label>
       </div>
       <div class="custom-control custom-radio">
-        <input type="radio" id="alien" name="species" class="custom-control-input" />
-        <label class="custom-control-label" for="alien">Alien</label>
+        <input
+          type="radio"
+          id="alien"
+          v-model="species"
+          value="Alien"
+          class="custom-control-input"
+          v-on:change="addFilter"
+        />
+        <label class="custom-control-label" for="alien" v-on:change="addFilter">Alien</label>
       </div>
     </div>
 
     <div class="filter-container">
       <h3>Gender</h3>
       <div class="custom-control custom-radio">
-        <input type="radio" id="male" name="gender" class="custom-control-input" />
+        <input
+          type="radio"
+          id="male"
+          v-model="gender"
+          value="Male"
+          class="custom-control-input"
+          v-on:change="addFilter"
+        />
         <label class="custom-control-label" for="male">Male</label>
       </div>
       <div class="custom-control custom-radio">
-        <input type="radio" id="female" name="gender" class="custom-control-input" />
+        <input
+          type="radio"
+          id="female"
+          v-model="gender"
+          value="Female"
+          class="custom-control-input"
+          v-on:change="addFilter"
+        />
         <label class="custom-control-label" for="female">Female</label>
       </div>
     </div>
@@ -32,7 +67,35 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      gender: "",
+      species: ""
+    };
+  },
+  methods: {
+    addFilter() {
+      let filters = [];
+      let genderFilter={};
+      let speciesFilter={};
+
+      if (this.gender != "") {
+        genderFilter["filterType"] = "gender";
+        genderFilter["name"] = this.gender;
+        filters.push(genderFilter);
+      }
+      if (this.species != "") {
+        speciesFilter["filterType"] = "species";
+        speciesFilter["name"] = this.species;
+        filters.push(speciesFilter);
+      }
+      console.log(filters);
+
+      this.$store.dispatch("addFilter", filters);
+    }
+  }
+};
 </script>
 
 <style scoped>

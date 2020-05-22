@@ -4,34 +4,34 @@
       <div style="max-height: 13rem;position: relative;">
         <div
           class="image"
-          style="background-image: url('https://rickandmortyapi.com/api/character/avatar/1.jpeg');"
+          :style="{backgroundImage: `url(${character.image})`}"
         ></div>
         <div class="title">
-          <h3 class="name">Rick Sanchez</h3>
-          <span class="created">id: 1 created 3Years ago</span>
+          <h3 class="name">{{character.name}}</h3>
+          <span class="created">id: {{character.id}} created {{createdDate}} Years ago</span>
         </div>
       </div>
       <div class="character-details">
         <ul>
           <li class="property">
             <span class="property-name">Status</span>
-            <span class="property-value">Alive</span>
+            <span class="property-value">{{character.status}}</span>
           </li>
           <li class="property">
             <span class="property-name">Species</span>
-            <span class="property-value">Human</span>
+            <span class="property-value">{{character.species}}</span>
           </li>
           <li class="property">
             <span class="property-name">Gender</span>
-            <span class="property-value">Male</span>
+            <span class="property-value">{{character.gender}}</span>
           </li>
           <li class="property">
             <span class="property-name">Origin</span>
-            <span class="property-value">Earth (C-137)</span>
+            <span class="property-value">{{character.origin.name}}</span>
           </li>
           <li class="property">
             <span class="property-name">Last Location</span>
-            <span class="property-value">Earth (Replacement Dimension)</span>
+            <span class="property-value">{{character.location.name}}</span>
           </li>
         </ul>
       </div>
@@ -40,7 +40,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:['character'],
+  computed:{
+    createdDate(){
+      return new Number((new Date().getTime() - new Date(this.character.created).getTime()) / 31536000000).toFixed(0);;
+    }
+  }
+};
 </script>
 
 <style scoped>

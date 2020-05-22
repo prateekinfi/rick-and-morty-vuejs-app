@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <button @click="updateData();">display</button>
     <div class="row">
       <app-selected-filters></app-selected-filters>
     </div>
@@ -12,10 +13,7 @@
       </div>
     </div>
     <div class="row">
-      <app-character-tile></app-character-tile>
-      <app-character-tile></app-character-tile>
-      <app-character-tile></app-character-tile>
-      <app-character-tile></app-character-tile>
+      <app-character-tile v-for="char in characterList" :key="char.id" :character="char"></app-character-tile>
     </div>
   </div>
 </template>
@@ -24,21 +22,22 @@
 import CharacterTile from "./Character/CharacterTile";
 import SelectedFilters from "./Filters/SelectedFilters";
 import Search from "./Search";
-import Sorting from './Sorting'
+import Sorting from "./Sorting";
+import { datamixin } from "../data";
 
 export default {
+  computed: {
+    characterList() {
+      return this.$store.getters.getResultList;
+    }
+  },
   components: {
     appSelectedFilters: SelectedFilters,
     appCharacterTile: CharacterTile,
     appSearch: Search,
     appSorting: Sorting
-  }
-  // ,
-  // data(){
-  //   return{
-  //     characterlist:
-  //   }
-  // }
+  },
+  mixins: [datamixin]
 };
 </script>
 
