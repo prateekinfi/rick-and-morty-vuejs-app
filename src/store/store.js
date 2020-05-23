@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
     state: {
         selectedFilterList: [],
         resultList: [],
-        searchParameter: ''
+        searchParameter: '',
+        ascending: true
     },
     getters: {
         'getSelectedFilterList': state => {
@@ -16,8 +17,11 @@ export const store = new Vuex.Store({
         'getResultList': state => {
             return state.resultList;
         },
-        'getSearchParameter':state => {
+        'getSearchParameter': state => {
             return state.searchParameter;
+        },
+        'getSortOrder': state => {
+            return state.ascending;
         }
     },
     mutations: {
@@ -35,16 +39,23 @@ export const store = new Vuex.Store({
                 ), 1);
         },
         'searchCharacterMutation': (state, payload) => {
-            console.log('Inside Search mutation' + payload);            
+            console.log('Inside Search mutation' + payload);
             state.searchParameter = payload;
         },
         'clearSearchMutation': state => {
             console.log('Inside search clear mutation ');
             state.searchParameter = '';
         },
-        'updateDataMutation': (state, payload)=> {
+        'updateDataMutation': (state, payload) => {
             console.log('Inside updateData Mutation');
-            state.resultList=payload;
+            state.resultList = payload;
+        },
+        'sortListMutation': (state, payload) => {
+            console.log('Inside sortList Mutation');
+            if (state.ascending != payload) {
+                state.resultList.reverse();
+                state.ascending= payload;
+            }
         }
     },
     actions: {
@@ -64,9 +75,13 @@ export const store = new Vuex.Store({
             console.log('Inside search clear Action');
             commit('clearSearchMutation')
         },
-        'updateData': ({ commit },payload) => {
+        'updateData': ({ commit }, payload) => {
             console.log('Inside updateData Action');
-            commit('updateDataMutation',payload.results)
+            commit('updateDataMutation', payload.results)
+        },
+        'sortList': ({ commit }, payload) => {
+            console.log('Inside sortList Action');
+            commit('sortListMutation', payload)
         }
     }
 });
