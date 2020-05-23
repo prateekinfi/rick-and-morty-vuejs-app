@@ -1,23 +1,17 @@
 <template>
   <div class="container">
     <h3>Selected Filters</h3>
-    <div class="selected-filter" v-for="(filter,index) in filterList" :key="filter.name">
+    <div class="selected-filter" v-for="(filter,index) in filterList" :key="index">
       {{filter.name}}
-      <div class="cross" @click="removeFilter(filter.filterType,index)">X</div>
+      <div class="cross" @click="removeFilter(filter,index)">X</div>
     </div>
   </div>
 </template>
 
 <script>
+import {datamixin} from '../../data';
+
 export default {
-  // data() {
-  //   return {
-  //     filterList: [
-  //       { name: "Male", filterType: "gender" },
-  //       { name: "Human", filterType: "species" }
-  //     ]
-  //   };
-  // },
   computed: {
     filterList() {
       return this.$store.getters.getSelectedFilterList;
@@ -25,11 +19,12 @@ export default {
   },
   methods: {
     removeFilter(filter, index) {
-      this.filterList.splice(index, 1);
+      //this.filterList.splice(index, 1);
       this.$store.dispatch("removeFilter", filter);
       this.updateData();
     }
-  }
+    },
+  mixins: [datamixin]
 };
 </script>
 <style scoped>

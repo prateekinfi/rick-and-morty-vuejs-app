@@ -23,7 +23,7 @@ export const store = new Vuex.Store({
     mutations: {
         'addFilterMutation': (state, payload) => {
             console.log('Inside add filter mutation' + payload);
-            state.selectedFilterList = payload;
+            state.selectedFilterList.push(payload);
         },
         'removeFilterMutation': (state, payload) => {
             console.log('Inside remove filter mutation' + payload);
