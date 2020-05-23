@@ -27,7 +27,11 @@ export const store = new Vuex.Store({
     mutations: {
         'addFilterMutation': (state, payload) => {
             console.log('Inside add filter mutation' + payload);
-            state.selectedFilterList.push(payload);
+            let filter =state.selectedFilterList.find(filter => payload['filterType'] == filter['filterType']);
+            if (filter) {
+                filter['name']=payload.name;
+            } else
+                state.selectedFilterList.push(payload);
         },
         'removeFilterMutation': (state, payload) => {
             console.log('Inside remove filter mutation' + payload);
@@ -54,7 +58,7 @@ export const store = new Vuex.Store({
             console.log('Inside sortList Mutation');
             if (state.ascending != payload) {
                 state.resultList.reverse();
-                state.ascending= payload;
+                state.ascending = payload;
             }
         }
     },

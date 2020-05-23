@@ -8,7 +8,6 @@ export const datamixin = {
             let searchParameter = this.$store.getters.getSearchParameter;
 
             if (selectedFilterList.length) {
-                console.log(selectedFilterList.length);
                 for (let i = 0; i < selectedFilterList.length; i++) {
                     filterQueryParams += `${selectedFilterList[i]['filterType']}=${selectedFilterList[i]['name']}&`;
                 }
