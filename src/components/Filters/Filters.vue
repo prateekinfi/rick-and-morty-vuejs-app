@@ -10,7 +10,6 @@
           v-model="species"
           value="Human"
           class="custom-control-input"
-          v-on:change="addFilter"
         />
         <label class="custom-control-label" for="human">Human</label>
       </div>
@@ -21,7 +20,6 @@
           v-model="species"
           value="Mytholog"
           class="custom-control-input"
-          v-on:change="addFilter"
         />
         <label class="custom-control-label" for="mytholog">Mytholog</label>
       </div>
@@ -32,9 +30,8 @@
           v-model="species"
           value="Alien"
           class="custom-control-input"
-          v-on:change="addFilter"
         />
-        <label class="custom-control-label" for="alien" v-on:change="addFilter">Alien</label>
+        <label class="custom-control-label" for="alien">Alien</label>
       </div>
     </div>
 
@@ -47,7 +44,6 @@
           v-model="gender"
           value="Male"
           class="custom-control-input"
-          v-on:change="addFilter"
         />
         <label class="custom-control-label" for="male">Male</label>
       </div>
@@ -58,7 +54,6 @@
           v-model="gender"
           value="Female"
           class="custom-control-input"
-          v-on:change="addFilter"
         />
         <label class="custom-control-label" for="female">Female</label>
       </div>
@@ -70,37 +65,63 @@
 import { datamixin } from "../../data";
 
 export default {
-  data() {
-    return {
-      gender: "",
-      species: ""
-    };
+  // data() {
+  //   return {
+  //     gender: "",
+  //     species: ""
+  //   };
+  // },
+  computed: {
+    gender: {
+      get() {
+        let filter = this.$store.getters.getSelectedFilterList.find(
+          filter => filter["filterType"] === "gender"
+        );
+        if (filter != undefined) return filter.name;
+        else return "";
+      },
+      set(value) {
+        let filter = {};
+        this.constructFilter(filter, value, "gender");
+        this.$store.dispatch("addFilter", filter);
+        this.updateData();
+      }
+    },
+    species: {
+      get() {
+        let filter = this.$store.getters.getSelectedFilterList.find(
+          filter => filter["filterType"] === "species"
+        );
+        if (filter != undefined) return filter.name;
+        else return "";
+      },
+      set(value) {
+       let filter = {};
+        this.constructFilter(filter, value, "species");
+        this.$store.dispatch("addFilter", filter);
+        this.updateData();
+      }
+    }
   },
   methods: {
-    addFilter() {
-      let filters = [];
-      let genderFilter = {};
-      let speciesFilter = {};
-
-      if (this.gender != "") {
-        genderFilter["filterType"] = "gender";
-        genderFilter["name"] = this.gender;
-        filters.push(genderFilter);
+    constructFilter(filter, value, filterType) {
+      //let filter = {};
+      if (value != "") {
+        filter["filterType"] = filterType;
+        filter["name"] = value;
+       // filters.push(filter);
       }
-      if (this.species != "") {
-        speciesFilter["filterType"] = "species";
-        speciesFilter["name"] = this.species;
-        filters.push(speciesFilter);
-      }
-      // filters=[
-      //   {filterType:'species',name:'Human'},
-      //   {filterType:'gender',name:'Male'}
-      // ]
-      console.log(filters[0]);
-
-      this.$store.dispatch("addFilter", filters);
-      this.updateData();
+      return filter;
     }
+    //,
+    //removed on change
+    // addFilter() {
+    //   let filters = [];
+    //   this.constructFilter(filters, this.gender, "gender");
+    //   this.constructFilter(filters, this.species, "species");
+    //   this.$store.dispatch("addFilter", filters);
+    //   this.updateData();
+    // }
   },
   mixins: [datamixin]
 };
