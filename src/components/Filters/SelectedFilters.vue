@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3>Selected Filters</h3>
-    <div class="selected-filter" v-for="(filter,index) in filterList" :key="index">
+    <div class="selected-filter mb-1" v-for="(filter,index) in filterList" :key="index">
       {{filter.name}}
       <div class="cross" @click="removeFilter(filter,index)">X</div>
     </div>
@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     removeFilter(filter, index) {
-      //this.filterList.splice(index, 1);
       this.$store.dispatch("removeFilter", filter);
       this.updateData();
     }

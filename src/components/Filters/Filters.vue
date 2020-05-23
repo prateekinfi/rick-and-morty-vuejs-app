@@ -77,7 +77,7 @@ export default {
         let filter = this.$store.getters.getSelectedFilterList.find(
           filter => filter["filterType"] === "gender"
         );
-        if (filter != undefined) return filter.name;
+        if (filter) return filter.name;
         else return "";
       },
       set(value) {
@@ -92,7 +92,7 @@ export default {
         let filter = this.$store.getters.getSelectedFilterList.find(
           filter => filter["filterType"] === "species"
         );
-        if (filter != undefined) return filter.name;
+        if (filter) return filter.name;
         else return "";
       },
       set(value) {
