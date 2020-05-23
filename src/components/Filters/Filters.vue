@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import { datamixin } from "../../data";
+
 export default {
   data() {
     return {
@@ -77,8 +79,8 @@ export default {
   methods: {
     addFilter() {
       let filters = [];
-      let genderFilter={};
-      let speciesFilter={};
+      let genderFilter = {};
+      let speciesFilter = {};
 
       if (this.gender != "") {
         genderFilter["filterType"] = "gender";
@@ -90,11 +92,17 @@ export default {
         speciesFilter["name"] = this.species;
         filters.push(speciesFilter);
       }
-      console.log(filters);
+      // filters=[
+      //   {filterType:'species',name:'Human'},
+      //   {filterType:'gender',name:'Male'}
+      // ]
+      console.log(filters[0]);
 
       this.$store.dispatch("addFilter", filters);
+      this.updateData();
     }
-  }
+  },
+  mixins: [datamixin]
 };
 </script>
 

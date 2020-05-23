@@ -2,31 +2,50 @@
   <div class="row">
     <div class="col-xs-12 col-md-8 mb-2">
       <div class="input-group">
-        <input type="text" class="form-control" v-model="searchInput" placeholder="Search characters.." @keypress.enter="searchCharacter(searchInput)">
+        <input
+          type="text"
+          class="form-control"
+          v-model="searchInput"
+          placeholder="Search characters.."
+          @keypress.enter="searchCharacter(searchInput)"
+        />
         <div class="input-group-append">
-          <button class="btn btn-secondary black-btn" type="button" @click="searchCharacter(searchInput)">
+          <button class="btn btn-secondary black-btn" type="button" @click="searchCharacter()">
             <i class="fa fa-search"></i>
           </button>
         </div>
       </div>
     </div>
     <div class="col-xs-12 col-md-4 mb-2">
-      <button class="btn btn-secondary black-btn clear-btn" type="button" @click="clearSearch();searchInput=''">Clear search</button>
+      <button
+        class="btn btn-secondary black-btn clear-btn"
+        type="button"
+        @click="clearSearch();searchInput=''"
+      >Clear search</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { datamixin } from "../data";
+
 export default {
-  data(){
-    return{
-      searchInput : ''
+  data() {
+    return {
+      searchInput: ""
+    };
+  },
+  methods: {
+    searchCharacter() {
+      this.$store.dispatch("searchCharacter", this.searchInput);
+      this.updateData();
+    },
+    clearSearch() {
+      this.$store.dispatch("clearSearch", this.searchInput);
+      this.updateData();
     }
   },
-  methods: { 
-    ...mapActions(["searchCharacter","clearSearch"])
-   }
+  mixins: [datamixin]
 };
 </script>
 

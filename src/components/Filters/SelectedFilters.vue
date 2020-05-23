@@ -10,18 +10,24 @@
 
 <script>
 export default {
-  data() {
-    return {
-      filterList: [
-        { name: "Male", filterType: "gender" },
-        { name: "Human", filterType: "species" }
-      ]
-    };
+  // data() {
+  //   return {
+  //     filterList: [
+  //       { name: "Male", filterType: "gender" },
+  //       { name: "Human", filterType: "species" }
+  //     ]
+  //   };
+  // },
+  computed: {
+    filterList() {
+      return this.$store.getters.getSelectedFilterList;
+    }
   },
   methods: {
     removeFilter(filter, index) {
       this.filterList.splice(index, 1);
       this.$store.dispatch("removeFilter", filter);
+      this.updateData();
     }
   }
 };

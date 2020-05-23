@@ -6,12 +6,11 @@ export const datamixin = {
             let filterQueryParams = "";
             let selectedFilterList = this.$store.getters.getSelectedFilterList;
             let searchParameter = this.$store.getters.getSearchParameter;
-            // console.log(selectedFilterList);
-            
+
             if (selectedFilterList.length) {
-                for (let filter in selectedFilterList) {
-                    console.log(filter);
-                    filterQueryParams = `${filter['filterType']}=${filter['name']}&`;
+                console.log(selectedFilterList.length);
+                for (let i = 0; i < selectedFilterList.length; i++) {
+                    filterQueryParams += `${selectedFilterList[i]['filterType']}=${selectedFilterList[i]['name']}&`;
                 }
                 filterQueryParams = filterQueryParams.substr(0, filterQueryParams.length - 1);
             }
@@ -30,6 +29,9 @@ export const datamixin = {
                 .then(data => {
                     console.log(data.body);
                     this.$store.dispatch("updateData", data.body);
+                }, response => {
+                    this.$store.dispatch("updateData", []);
+                    console.log(response)
                 });
         }
     }

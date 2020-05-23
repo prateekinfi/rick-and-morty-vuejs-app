@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <button @click="updateData();">display</button>
     <div class="row">
       <app-selected-filters></app-selected-filters>
     </div>
@@ -13,7 +12,12 @@
       </div>
     </div>
     <div class="row">
-      <app-character-tile v-for="char in characterList" :key="char.id" :character="char"></app-character-tile>
+      <template v-if="characterList">
+        <app-character-tile v-for="char in characterList" :key="char.id" :character="char"></app-character-tile>
+      </template>
+      <template v-else>
+        <app-no-characters-found></app-no-characters-found>
+      </template>
     </div>
   </div>
 </template>
@@ -24,6 +28,7 @@ import SelectedFilters from "./Filters/SelectedFilters";
 import Search from "./Search";
 import Sorting from "./Sorting";
 import { datamixin } from "../data";
+import NoCharactersFound from "./NoCharactersFound.vue";
 
 export default {
   computed: {
@@ -35,7 +40,11 @@ export default {
     appSelectedFilters: SelectedFilters,
     appCharacterTile: CharacterTile,
     appSearch: Search,
-    appSorting: Sorting
+    appSorting: Sorting,
+    appNoCharactersFound: NoCharactersFound
+  },
+  created() {
+    this.updateData();
   },
   mixins: [datamixin]
 };

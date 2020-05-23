@@ -8,6 +8,8 @@
 export default {}
 </script>
 
-<style>
-
+<style scoped>
+div{
+  font-size: 36px;
+}
 </style>
