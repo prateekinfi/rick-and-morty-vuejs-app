@@ -6,9 +6,9 @@
     Sort By ID
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Ascending</a>
+    <button class="dropdown-item" @click="sort(true)">Ascending</button>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Descending</a>
+    <button class="dropdown-item" @click="sort(false)">Descending</button>
   </div>
 </div>
     
@@ -16,7 +16,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods:{
+    sort(order){
+      this.$store.dispatch('sortList',order)
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -26,7 +32,7 @@ width: 100%;
 .btn{
 width: 100%;
 }
-button{
+button.dropdown-toggle{
   background-color:black;
 }
 </style>
