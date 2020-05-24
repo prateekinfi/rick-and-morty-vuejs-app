@@ -35,4 +35,7 @@ width: 100%;
 button.dropdown-toggle{
   background-color:black;
 }
+.dropdown-menu{
+width: inherit;
+}
 </style>
