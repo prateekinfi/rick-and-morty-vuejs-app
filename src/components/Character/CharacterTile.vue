@@ -13,23 +13,23 @@
       </div>
       <div class="character-details">
         <ul>
-          <li class="property">
+          <li class="property status">
             <span class="property-name">Status</span>
             <span class="property-value">{{character.status}}</span>
           </li>
-          <li class="property">
+          <li class="property species">
             <span class="property-name">Species</span>
             <span class="property-value">{{character.species}}</span>
           </li>
-          <li class="property">
+          <li class="property gender">
             <span class="property-name">Gender</span>
             <span class="property-value">{{character.gender}}</span>
           </li>
-          <li class="property">
+          <li class="property origin">
             <span class="property-name">Origin</span>
             <span class="property-value">{{character.origin.name}}</span>
           </li>
-          <li class="property">
+          <li class="property location">
             <span class="property-name">Last Location</span>
             <span class="property-value">{{character.location.name}}</span>
           </li>
