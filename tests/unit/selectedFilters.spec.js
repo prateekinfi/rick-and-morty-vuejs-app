@@ -14,4 +14,15 @@ describe('selectedFilter.vue', () => {
     expect(wrapper.find('div.cross').html()).toMatch('X');
 
   })
+  it('removes selected filter list heading if list is empty', () => {
+    
+    const wrapper = shallowMount(SelectedFilters, {
+      data(){
+        return {
+        filterList : []
+      }}
+    });
+    expect(wrapper.find('h3').exists()).toBeFalsy();
+
+  })
 })
