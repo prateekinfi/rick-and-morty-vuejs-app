@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>Selected Filters</h3>
+    <h3 v-if="filterList.length">Selected Filters</h3>
     <div class="selected-filter mb-1" v-for="(filter,index) in filterList" :key="index">
       {{filter.name}}
       <div class="cross" @click="removeFilter(filter,index)">X</div>
