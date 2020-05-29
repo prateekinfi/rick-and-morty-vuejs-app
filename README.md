@@ -1,6 +1,7 @@
 # rick-and-morty-vue-app
 
-> A Vue.js project
+A website using Vue, Vuex ,Vue-resource and much more showcasing characters from the Ricky and Morty Show.
+https://rickandmortyvue.netlify.app/
 
 ## Build Setup
 
